@@ -9,6 +9,7 @@ Before on-chain verification, you need to create relevant environment values and
 For testing, you should set environment variables as below and run `forge test -vvvv --gas-report`.
 
 ```sh
+TIMESTAMP=1694682092
 SRS_HASH=0xb80b3409e0da2ef147dea3001facca17cb58bb3f703333750e9edc3e5096105d
 NUM_INPUTS=1
 DOMAIN_SIZE=524288

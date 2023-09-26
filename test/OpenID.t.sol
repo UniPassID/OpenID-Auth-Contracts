@@ -12,7 +12,7 @@ contract OpenIDTest is Test {
     address admin_;
 
     function setUp() public {
-        vm.warp(1694682092);
+        vm.warp(vm.envUint("TIMESTAMP"));
         admin_ = vm.addr(0x100);
         vm.startPrank(admin_);
         OpenID openIdImpl = new OpenID();
@@ -42,13 +42,10 @@ contract OpenIDTest is Test {
 
     function testValidate() public {
         emit log_uint(block.timestamp);
-        (
-            bool succ,
-            uint256 index,
-            bytes32 issHash,
-            bytes32 subHash,
-            bytes32 nonceHash
-        ) = openId_.validateIDToken(0, vm.envBytes("OPENID_VERIFY_DATA"));
+        (bool succ, , , , ) = openId_.validateIDToken(
+            0,
+            vm.envBytes("OPENID_VERIFY_DATA")
+        );
 
         assert(succ);
     }

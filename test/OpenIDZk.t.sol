@@ -12,7 +12,7 @@ contract OpenIDZkTest is Test {
     address admin_;
 
     function setUp() public {
-        vm.warp(1694682092);
+        vm.warp(vm.envUint("TIMESTAMP"));
         admin_ = vm.addr(0x100);
         vm.startPrank(admin_);
         OpenIDZk openIdImpl = new TestOpenIDZk();
@@ -47,14 +47,11 @@ contract OpenIDZkTest is Test {
         vm.stopPrank();
     }
 
-    function testOpenIDZkValidate() public {
-        (
-            bool succ,
-            uint256 index,
-            bytes32 issHash,
-            bytes32 subHash,
-            bytes32 nonceHash
-        ) = openId_.validateIDToken(0, vm.envBytes("OPENIDZK_VERIFY_DATA"));
+    function testOpenIDZkValidate() public view {
+        (bool succ, , , , ) = openId_.validateIDToken(
+            0,
+            vm.envBytes("OPENIDZK_VERIFY_DATA")
+        );
 
         assert(succ);
     }
