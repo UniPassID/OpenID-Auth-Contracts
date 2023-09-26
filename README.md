@@ -2,8 +2,10 @@
 
 This repo contains contracts for on-chain verification of OpenID IdTokens, and the contract verification supports both direct verification and verification wrapped in zero-knowledge proof, which hide the "sub", the user's identifier.
 
-To use this repo, you need use this repo [UniPass-OpenID-Auth](https://github.com/UniPassID/UniPass-OpenID-Auth) to generate data for verification.
+#### Prerequisite: 
+Before on-chain verification, you need to create relevant environment values and hashes. Check out this repo [UniPass-OpenID-Auth](https://github.com/UniPassID/UniPass-OpenID-Auth) for verification vaule generation.
 
+#### Testing:
 For testing, you should set environment variables as below and run `forge test -vvvv --gas-report`.
 
 ```sh
