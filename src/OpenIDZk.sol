@@ -32,6 +32,8 @@ contract OpenIDZk is Ownable, UnipassVerifier, AudManager, OpenIDKeyManager {
     }
     uint256 constant OpenIDParamsIndexNum = 14;
 
+    constructor(address owner) Ownable(owner) {}
+
     // first register srshash
     function setupSRSHashAndVKHash(
         uint256 srshash_init,

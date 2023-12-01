@@ -28,6 +28,8 @@ contract OpenID is Ownable, AudManager, OpenIDKeyManager {
     }
     uint256 constant OpenIDParamsIndexNum = 11;
 
+    constructor(address owner) Ownable(owner) {}
+
     function _validateTimestamp(
         uint256 _index,
         bytes calldata _data,

@@ -14,7 +14,7 @@ contract OpenIDZkTest is Test {
         vm.warp(vm.envUint("TIMESTAMP"));
         admin_ = vm.addr(0x100);
         vm.startPrank(admin_);
-        openId_ = new TestOpenIDZk();
+        openId_ = new TestOpenIDZk(admin_);
 
         openId_.setupSRSHashAndVKHashHelper(
             uint256(bytes32(vm.envBytes32("SRS_HASH"))),

@@ -15,7 +15,7 @@ contract OpenIDTest is Test {
         vm.warp(vm.envUint("TIMESTAMP"));
         admin_ = vm.addr(0x100);
         vm.startPrank(admin_);
-        openId_ = new OpenID();
+        openId_ = new OpenID(admin_);
 
         openId_.updateOpenIDPublicKey(
             keccak256(

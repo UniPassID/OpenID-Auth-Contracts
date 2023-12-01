@@ -7,6 +7,8 @@ import "../src/libraries/LibBytes.sol";
 contract TestOpenIDZk is OpenIDZk {
     using LibBytes for bytes;
 
+    constructor(address owner) OpenIDZk(owner) {}
+
     function setupSRSHashAndVKHashHelper(
         uint256 srshash_init,
         uint64 num_inputs,
