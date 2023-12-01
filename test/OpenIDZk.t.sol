@@ -3,7 +3,6 @@ pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
 import "forge-std/Vm.sol";
-import {ERC1967Proxy} from "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
 import "./TestOpenIDZk.sol";
 
@@ -15,11 +14,7 @@ contract OpenIDZkTest is Test {
         vm.warp(vm.envUint("TIMESTAMP"));
         admin_ = vm.addr(0x100);
         vm.startPrank(admin_);
-        OpenIDZk openIdImpl = new TestOpenIDZk();
-        bytes memory data = abi.encodeCall(openIdImpl.initialize, ());
-        openId_ = TestOpenIDZk(
-            address(new ERC1967Proxy(address(openIdImpl), data))
-        );
+        openId_ = new TestOpenIDZk();
 
         openId_.setupSRSHashAndVKHashHelper(
             uint256(bytes32(vm.envBytes32("SRS_HASH"))),
